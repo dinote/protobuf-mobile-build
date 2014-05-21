@@ -61,10 +61,16 @@ make clean
 make
 cp src/.libs/libprotobuf-lite.a ios-build/libprotobuf-lite-armv7s.a
 
+#build for iPhoneOS arm64
+configure_for_platform iPhoneOS arm64
+make clean
+make
+cp src/.libs/libprotobuf-lite.a ios-build/libprotobuf-lite-arm64.a
+
 make clean
 
 #cerate a fat library containing all achitectures in libprotobuf-lite.a
-xcrun -sdk iphoneos lipo -arch armv7 ios-build/libprotobuf-lite-armv7.a -arch armv7s ios-build/libprotobuf-lite-armv7s.a -arch i386 ios-build/libprotobuf-lite-i386.a -create -output ios-build/libprotobuf-lite.a
+xcrun -sdk iphoneos lipo -arch armv7 ios-build/libprotobuf-lite-armv7.a -arch armv7s ios-build/libprotobuf-lite-armv7s.a -arch arm64 ios-build/libprotobuf-lite-arm64.a -arch i386 ios-build/libprotobuf-lite-i386.a -create -output ios-build/libprotobuf-lite.a
 
 
 
